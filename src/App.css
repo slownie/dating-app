@@ -37,18 +37,16 @@
   }
 }
 
+.rootApp {
+  background-color: red;
+  display: 'flex'
+}
+
 .sidebarOptions {
   text-align: center;
   line-height: 21vh;
 }
 
-.button:hover {
-  filter: brightness (150%)
-}
-
-.button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
+.button-success {
+  
 }

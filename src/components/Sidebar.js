@@ -11,20 +11,22 @@ export default function Sidebar() {
     const itemList=[
         {
             text: 'Profile',
-            onClick: () => navigate('/'),
+            onClick: () => navigate('/profile'),
         },
 
         {
             text: 'Matches',
-            onClick: () => navigate('/login')
+            onClick: () => navigate('/matches')
         },
 
         {   
             text: 'Chats',
+            onClick: () => navigate('/chats')
         },  
 
         {
-            text: 'Browse'
+            text: 'Search',
+            onClick: () => navigate('/')
         },
     ];
 
@@ -35,7 +37,7 @@ export default function Sidebar() {
                 {itemList.map((item, index) => {
                     const {text, onClick} = item;
                     return (
-                        <ListItem button key={text} onClick={onClick}>
+                        <ListItem button key={index} onClick={onClick}>
                             <ListItemText primary={text} sx={{alignContent: 'center'}} />
                         </ListItem>
                     )

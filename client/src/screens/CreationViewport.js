@@ -68,7 +68,7 @@ export default function CreationViewport()
                     <label>Gender</label>
                     <br/>
 
-                    <label for="male">Male</label>
+                    <label htmlFor="male">Male</label>
                     <input
                         type="radio"
                         id="male"
@@ -76,7 +76,7 @@ export default function CreationViewport()
                         value={formData.gender}
                     />
 
-                    <label for="female">Female</label>
+                    <label htmlFor="female">Female</label>
                     <input
                         type="radio"
                         id="female"
@@ -84,7 +84,7 @@ export default function CreationViewport()
                         value={formData.gender}
                     />
 
-                    <label for="non_identifying">Non-Identifying</label>
+                    <label htmlFor="non_identifying">Non-Identifying</label>
                     <input
                         type="radio"
                         id="non_identifying"
@@ -92,7 +92,7 @@ export default function CreationViewport()
                         value={formData.gender}
                     />
 
-                    <label for="no">Prefer not to say</label>
+                    <label htmlFor="no">Prefer not to say</label>
                     <input
                         type="radio"
                         id="no"
@@ -105,7 +105,7 @@ export default function CreationViewport()
                     <label>Interested in</label>
                     <br/>
 
-                    <label for="male">Male</label>
+                    <label htmlFor="male">Male</label>
                     <input
                         type="radio"
                         id="male"
@@ -113,7 +113,7 @@ export default function CreationViewport()
                         value={formData.interest}
                     />
 
-                    <label for="female">Female</label>
+                    <label htmlFor="female">Female</label>
                     <input
                         type="radio"
                         id="female"
@@ -121,7 +121,7 @@ export default function CreationViewport()
                         value={formData.interest}
                     />
 
-                    <label for="non_identifying">Non-Identifying</label>
+                    <label htmlFor="non_identifying">Non-Identifying</label>
                     <input
                         type="radio"
                         id="non_identifying"
@@ -129,7 +129,7 @@ export default function CreationViewport()
                         value={formData.interest}
                     />
 
-                    <label for="no">Everyone</label>
+                    <label htmlFor="no">Everyone</label>
                     <input
                         type="radio"
                         id="no"

@@ -1,8 +1,10 @@
 require('dotenv').config();
+
 const express = require('express');
-const {MongoClient} = require('mongodb');
+const mongoose = require('mongoose');
 const cors = require('cors');
-const uri = 'mongodb+srv://slownie:123@cluster0.hbyv0.mongodb.net/?retryWrites=true&w=majority'
+
+const userRoutes = require('./routes/users');
 
 // Express App
 const app = express();
@@ -11,22 +13,31 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-app.get('/', (req,res) => {
-    res.json({mssg: 'Welcome'})
+// Logs request method and path
+app.use((req,res,next) => {
+    console.log(req.path, req.method);
+    next();
 });
 
-// Sign up to the Database
-app.post('/signup', async(req,res) => {
-    const client = new MongoClient(uri);
-    try {
-        await client.connect();
-        const database = client.db('app-data');
-        const users = database.collection('users');
-    } catch (error) {
-        console.log(error);
-    }
-});
+app.get('/', (req,res,next) => {
+    res.json({mssg: 'test'});
+    next();
+})
 
-// Database Connection
-app.listen(process.env.PORT, () => console.log('Server running on PORT 4000'))
+// Routes
+app.use('/api/users', userRoutes);
+
+// Connect to db
+mongoose.connect(process.env.URI)
+    .then(() => {
+        // Don't listen for requests until we connect to the database
+        app.listen(process.env.PORT, () => console.log('Connected to db & Server running on PORT 4000'))
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+
+
+
+

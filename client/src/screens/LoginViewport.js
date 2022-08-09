@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 function LoginViewport()
 {
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [confirmPassword, setConfirmPassword] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
 
     let navigate = useNavigate();
@@ -14,13 +14,19 @@ function LoginViewport()
 
         // Password check
         try {
-            if (password !== confirmPassword) {
-                setError("Passwords need to match!");
-                return;
-            }
+            // if (password !== confirmPassword) {
+            //     setError("Passwords need to match!");
+            //     return;
+            // }
+            console.log(JSON.stringify({email, password}));
+            const response = await fetch("/api/users/signup", {
+                method: 'Post',
+                body: JSON.stringify({email, password})
+            });
+            
+            console.log(response.json());
+            if (response) navigate('/create');
 
-            const success = 201;
-            if (success) navigate('/create');
         } catch (error) {
             console.log(error);
         }
@@ -48,6 +54,7 @@ function LoginViewport()
                         id="email"
                         name="email"
                         placeholder="Email"
+                        value={email}
                         required={true}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -57,24 +64,26 @@ function LoginViewport()
                         id="password"
                         name="password"
                         placeholder='Password'
+                        value={password}
                         required={true}
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <input
+                    {/* <input
                         type="password"
                         id="password-check"
                         name="password-check"
                         placeholder="Confirm Password"
+                        value={confirmPassword}
                         required={true}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
+                    /> */}
                     <input className="submit-button" type="submit" id="signup"/>
                     <p>{error}</p>
                 </form>
                 <br/>
 
-                <h4>Already have an account? Login</h4>
+                {/* <h4>Already have an account? Login</h4>
                 <hr/>
                 <form onSubmit={handleSubmitLogin}>
                     <input 
@@ -95,7 +104,7 @@ function LoginViewport()
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <input className="submit-button" type="submit" id="login"/>
-                </form>
+                </form> */}
             </div>
         </div>
     )

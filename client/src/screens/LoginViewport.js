@@ -1,42 +1,27 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useSignup } from '../hooks/useSignup';
+import { useLogin } from '../hooks/useLogin';
+
 function LoginViewport()
 {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState(null);
+    const [signEmail, setSignEmail] = useState('');
+    const [signPassword, setSignPassword] = useState('');
 
-    let navigate = useNavigate();
+    const [logEmail, setLogEmail] = useState('');
+    const [logPassword, setLogPassword] = useState('');
+
+    const {signup, error, isLoading} = useSignup();
+    const {login, _error, _isLoading} = useLogin();
+
 
     const handleSubmitSignUp = async (e) => {
         e.preventDefault();
-
-        // Password check
-        try {
-            // if (password !== confirmPassword) {
-            //     setError("Passwords need to match!");
-            //     return;
-            // }
-            console.log(JSON.stringify({email, password}));
-            const response = await fetch("/api/users/signup", {
-                method: 'Post',
-                body: JSON.stringify({email, password})
-            });
-            
-            console.log(response.json());
-            if (response) navigate('/create');
-
-        } catch (error) {
-            console.log(error);
-        }
+        await signup(signEmail, signPassword);
     }
 
-    const handleSubmitLogin = (e) => {
+    const handleSubmitLogin = async (e) => {
         e.preventDefault();
-
-        navigate('/search');
-        return;
+        await login(logEmail, logPassword);
     }
 
     return (
@@ -47,64 +32,50 @@ function LoginViewport()
             <div className='login-container'>
                 <h2>Sign up for an account</h2>
                 <hr/>
-
                 <form onSubmit={handleSubmitSignUp}>
                     <input 
                         type="email"
-                        id="email"
-                        name="email"
                         placeholder="Email"
-                        value={email}
+                        value={signEmail}
                         required={true}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setSignEmail(e.target.value)}
                     />
 
                     <input
                         type="password"
-                        id="password"
-                        name="password"
                         placeholder='Password'
-                        value={password}
+                        value={signPassword}
                         required={true}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setSignPassword(e.target.value)}
                     />
 
-                    {/* <input
-                        type="password"
-                        id="password-check"
-                        name="password-check"
-                        placeholder="Confirm Password"
-                        value={confirmPassword}
-                        required={true}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    /> */}
-                    <input className="submit-button" type="submit" id="signup"/>
+                    <input className="submit-button" type="submit" id="signup" disabled={isLoading}/>
                     <p>{error}</p>
                 </form>
                 <br/>
 
-                {/* <h4>Already have an account? Login</h4>
+                <h4>Already have an account? Login</h4>
                 <hr/>
                 <form onSubmit={handleSubmitLogin}>
                     <input 
                         type="email"
-                        id="email"
-                        name="email"
                         placeholder="Email"
+                        value={logEmail}
                         required={true}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setLogEmail(e.target.value)}
                     />
 
                     <input
                         type="password"
-                        id="password"
-                        name="password"
                         placeholder='Password'
+                        value={logPassword}
                         required={true}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setLogPassword(e.target.value)}
                     />
-                    <input className="submit-button" type="submit" id="login"/>
-                </form> */}
+
+                    <input className="submit-button" type="submit" id="login" disabled={_isLoading}/>
+                    <p>{_error}</p>
+                </form>
             </div>
         </div>
     )

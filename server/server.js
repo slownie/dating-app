@@ -4,8 +4,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const userRoutes = require('./routes/users');
-
 // Express App
 const app = express();
 
@@ -19,19 +17,17 @@ app.use((req,res,next) => {
     next();
 });
 
-app.get('/', (req,res,next) => {
-    res.json({mssg: 'test'});
-    next();
-})
-
 // Routes
+const userRoutes = require('./routes/user')
+
+// Only fire routes at a specific path
 app.use('/api/users', userRoutes);
 
 // Connect to db
 mongoose.connect(process.env.URI)
     .then(() => {
         // Don't listen for requests until we connect to the database
-        app.listen(process.env.PORT, () => console.log('Connected to db & Server running on PORT 4000'))
+        app.listen(process.env.PORT, () => console.log('Connected to db & Server running on PORT', process.env.PORT))
     })
     .catch((error) => {
         console.log(error)

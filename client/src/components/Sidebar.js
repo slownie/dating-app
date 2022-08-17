@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function NewSidebar() {
-    let navigate = useNavigate();
     const itemList=[
         {
             text: 'Profile',
@@ -26,12 +25,15 @@ function NewSidebar() {
     ];
     return (
         <div className = "sidebar-container">
-            {itemList.map((item, index)=> {
-                const {text,onClick} = item;
-                return (
-                    <Link to={onClick}>{text}</Link>
-                )
-            })}
+            <div className="sidebar">
+                <h2>MERN Dating App</h2>
+                {itemList.map((item, index)=> {
+                    const {text,onClick} = item;
+                    return (
+                        <Link to={onClick}>{text}</Link>
+                    )
+                })}
+            </div>
         </div>
     )
 }

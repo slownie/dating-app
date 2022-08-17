@@ -1,4 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import {useAuthContext} from './hooks/useAuthContext';
 
 
 import LoginViewport from './screens/LoginViewport';
@@ -10,17 +12,19 @@ import SearchViewport from "./screens/SearchViewport";
 
 
 export default function App() {
+  const {user} = useAuthContext();
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact   element={<LoginViewport/>} />
-          <Route path="/create"   element={<CreationViewport/>} />
+          <Route path="/" exact   element={user ? <Navigate to="/search"/> : <LoginViewport/>} />
+          <Route path="/create"   element={user ? <CreationViewport/> : <Navigate to="/"/>} />
 
-          <Route path="/profile"  element ={<ProfileViewport />} />
-          <Route path="/matches"  element ={<MatchesViewport />} />
-          <Route path="/chats"    element ={<ChatsViewport />} />
-          <Route path="/search"   element ={<SearchViewport />} />
+          <Route path="/profile"  element ={user ? <ProfileViewport/> : <Navigate to="/"/>} />
+          <Route path="/matches"  element ={user ? <MatchesViewport/> : <Navigate to="/"/>} />
+          <Route path="/chats"    element ={user ? <ChatsViewport/> : <Navigate to="/"/>} />
+          <Route path="/search"   element ={user ? <SearchViewport/> : <Navigate to="/"/>} />
         </Routes>
       </BrowserRouter>
     </div>

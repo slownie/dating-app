@@ -15,15 +15,24 @@ code {
 /*---Sidebar---*/
 .sidebar-container {
   display: flex;
-  position: relative;
+  position: fixed;
 }
 
 .sidebar {
-  background-color: red;
+  background-color: cornsilk;
   width: 250px;
-  height: 100%px;
+  height: 100%;
   padding: 30px 0px;
   position: fixed;
+}
+
+.nav-text {
+  color: white;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  list-style: none;
+  height: 60px;
 }
 
 
@@ -122,3 +131,60 @@ code {
   resize: none;
 }
 
+/*--Search Screen--*/
+.search-screen {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: aquamarine;
+}
+
+.search-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  max-height: 1200px;
+  padding: 40px;
+  border-radius: 20px;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+}
+
+.search-screen h1, h6 {
+  text-align: center;
+}
+
+.user-container {
+  height: 400px;  
+}
+
+.selection-container {
+  display: inline-block;
+}
+
+.left-button {
+  background-color: beige;
+  color: red;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 100%;
+}
+
+.right-button {
+  background-color: beige;
+  color: green;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 100%;
+}

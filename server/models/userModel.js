@@ -56,7 +56,7 @@ userSchema.statics.signup = async function(email, password) {
     // Encryption
     const myID = mongoose.Types.ObjectId().toHexString();
     //console.log("userModel: "+myID);
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(3);
     const hashword = await bcrypt.hash(password, salt);
 
     // User Creation
@@ -80,6 +80,7 @@ userSchema.statics.login = async function(email, password) {
     // Check if password correct
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
+        console.log('Yeah it is incorrect')
         throw Error('Incorrect password')
     }
     return user;

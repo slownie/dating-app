@@ -48,7 +48,7 @@ const updateUser = async (req, res) => {
             first_name: update.first_name,
             birthday: update.birthday,
             gender: update.gender,
-            interest: update.interest,
+            interest: update.preference,
             photos: [],
             about: update.about,
             matches: [],
@@ -74,4 +74,9 @@ const getUser = async (req, res) => {
     res.status(200).json(user);
 }
 
-module.exports = {signupUser, loginUser, updateUser, getUser}
+// Get All
+const getAll = async (req, res) => {
+    const users = await UserModel.find();
+} 
+
+module.exports = {signupUser, loginUser, updateUser, getUser, getAll}

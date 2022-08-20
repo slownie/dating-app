@@ -1,15 +1,34 @@
 import React from 'react';
-//import SearchBar from "material-ui-search-bar";
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import NewSidebar from '../components/Sidebar';
 
 function SearchViewport() {
+    const [user, setUser] = useState(null);
+
+
+
+    const onMatch = (swipedUserId) => {
+        //updateMatches(swipedUserId)
+    }
+
     return (  
-        <div style={{display: 'flex'}}>
+        <div className='search-screen'>
             <NewSidebar />
 
-            <div className="search-container">
-                <h1>Search for milfs in your area</h1>
+            <h1>Search Viewport</h1>
+
+            <div className='search-container'>
+                <h2>Dashboard</h2>
+                <hr/>
+                
+                <div className='user-container'>
+
+                </div>
+                <hr/>
+                <div className="selection-container">
+                    <button className="left-button">X</button>
+                    <button className="right-button">✓</button>
+                </div>
             </div>
         </div>
     )

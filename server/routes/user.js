@@ -18,6 +18,5 @@ router.patch('/update/:id', updateUser);
 router.get(':/id', getUser);
 
 // Get All Route 'api/users/getall'
-router.get('/getall', getAlls);
 
 module.exports = router;

@@ -188,3 +188,103 @@ code {
   margin: 4px 2px;
   border-radius: 100%;
 }
+
+.matchesWrapper {
+  flex: 3;
+}
+
+.chatWrapper {
+  flex: 8.5
+}
+
+.chatWrapper, .matchesWrapper{
+  padding: 10px;
+  height: 100%;
+}
+
+.matchNameInput{
+  width: 90%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px 0 solid gray
+  }
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.otherUserMessageProfile{
+    display: flex;
+}
+
+.otherUserMessageImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.messageText{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(245, 241, 241);
+    max-width: 300px;
+}
+
+.timestamp{
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.message.own{
+    align-items: flex-end;
+}
+
+.message.own .messageText{
+    background: linear-gradient(
+    180deg,
+    rgba(139, 47, 184, 1) 0%,
+    rgba(103, 88, 205, 1) 51%,
+    rgba(89, 116, 219, 1) 92%
+    )
+    no-repeat center;
+    background-attachment: fixed;
+    color: #fff;
+    border-radius: 0.5rem;
+    height: fit-content;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    margin: 0.12rem 0.5rem;
+}
+
+.chatMessages{
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 10px
+}
+
+.chatInput{
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatMessageInput{
+  width: 80%;
+  height: 90px;
+  padding: 10px;
+  }
+
+.chatSendMessageButton{
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
+}

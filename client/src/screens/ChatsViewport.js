@@ -1,18 +1,21 @@
 import React from 'react';
-
-import Sidebar from '../components/SidebarMUI.js';
+import MatchesViewport from './MatchesViewport';
 
 export default function ChatsViewport() {
-
-
-
     return (
-        <div style={{flex: 1, marginLeft: 170}}>
-            <Sidebar />
-            <h1>Chats Viewport</h1>
-            <h3>Insert Chat App Here</h3>
-        </div>
-
+        <div>
+            <div className='matchesWrapper'>
+                <MatchesViewport/>
+            </div>
+        <div className='chatWrapper'>
+            <div className='chatMessages'>
+            </div>
+                <div className="chatInput">
+                    <textarea placeholder = "Say hello..." className='chatMessageInput'></textarea>
+                    <button className='chatSendMessageButton'>Send</button>
+                </div>
+            </div>
+        </div>  
         // Show all matches
     );
 }

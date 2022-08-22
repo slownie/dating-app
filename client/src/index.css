@@ -38,10 +38,12 @@ code {
 
 /*---Login Screen---*/
 .login-screen {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
+  width: 100%;
+  height: 100%;
   background-color: aquamarine;
+  overflow: visible;
+  position: absolute;
+  overflow-x: hidden;
 }
 
 .login-screen h1, h6 {
@@ -83,8 +85,8 @@ code {
 .creation-screen {
   width: 100vw;
   height: 100vh;
-  position: fixed;
   background-color: aquamarine;
+  overflow: visible;
 }
 
 .creation-screen h1, h6 {

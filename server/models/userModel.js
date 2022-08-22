@@ -4,10 +4,6 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new Schema({
-    _id: {
-        type: String,
-        required: true,
-    },
     email: {
         type: String,
         required: true,
@@ -17,7 +13,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    first_name: {
+    firstName: {
         type: String,
     },
     birthday: {
@@ -32,10 +28,10 @@ const userSchema = new Schema({
     about: {
         type: String
     }
-}, {_id: false});
+});
 
 // Static User Signup
-userSchema.statics.signup = async function(email, password) {
+userSchema.statics.signup = async function(email, password, formData) {
 
     // Validation
     if (!email || !password) {
@@ -52,6 +48,7 @@ userSchema.statics.signup = async function(email, password) {
     if (exists) {
         throw Error('Email already in use.');
     }
+
     
     // Encryption
     const myID = mongoose.Types.ObjectId().toHexString();
@@ -60,7 +57,13 @@ userSchema.statics.signup = async function(email, password) {
     const hashword = await bcrypt.hash(password, salt);
 
     // User Creation
-    const user = await this.create({_id: myID, email, password: hashword});
+    const user = await this.create({_id: myID, email, password: hashword, 
+        firstName: formData.firstName,
+        birthday: formData.birthday,
+        gender: formData.gender,
+        interest: formData.preference,
+        about: formData.about
+    });
     return user;
 }
 

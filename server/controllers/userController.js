@@ -8,10 +8,11 @@ const createToken = (_id) => {
 
 // Signup User
 const signupUser = async (req,res) => {
-    const {email, password} = req.body;
+    const {email, password, formData} = req.body;
+    //console.log("userController: "+JSON.stringify(formData));
 
     try {
-        const user = await UserModel.signup(email, password);  
+        const user = await UserModel.signup(email, password, formData);  
         const token = createToken(user._id);
         const id = user._id;
         res.status(200).json({email, token, id});

@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
-import { useSignup } from '../hooks/useSignup';
+import { Link } from 'react-router-dom';
 import { useLogin } from '../hooks/useLogin';
 
 function LoginViewport()
 {
-    const [signEmail, setSignEmail] = useState('');
-    const [signPassword, setSignPassword] = useState('');
 
-    const [logEmail, setLogEmail] = useState('');
-    const [logPassword, setLogPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const {signup, error, isLoading} = useSignup();
-    const {login, _error, _isLoading} = useLogin();
+    const {login, error, isLoading} = useLogin();
 
-
-    const handleSubmitSignUp = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        await signup(signEmail, signPassword);
-    }
-
-    const handleSubmitLogin = async (e) => {
-        e.preventDefault();
-        await login(logEmail, logPassword);
+        await login(email, password);
     }
 
     return (
@@ -30,23 +21,25 @@ function LoginViewport()
             <h6>The dating app made by two guys</h6>
 
             <div className='login-container'>
-                <h2>Sign up for an account</h2>
+                <h2>Log in to your account</h2>
                 <hr/>
-                <form onSubmit={handleSubmitSignUp}>
+                <form onSubmit={handleSubmit}>
                     <input 
                         type="email"
                         placeholder="Email"
-                        value={signEmail}
+                        name="Email"
+                        value={email}
                         required={true}
-                        onChange={(e) => setSignEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
 
                     <input
                         type="password"
                         placeholder='Password'
-                        value={signPassword}
+                        name="Password"
+                        value={password}
                         required={true}
-                        onChange={(e) => setSignPassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <input className="submit-button" type="submit" id="signup" disabled={isLoading}/>
@@ -54,28 +47,7 @@ function LoginViewport()
                 </form>
                 <br/>
 
-                <h4>Already have an account? Login</h4>
-                <hr/>
-                <form onSubmit={handleSubmitLogin}>
-                    <input 
-                        type="email"
-                        placeholder="Email"
-                        value={logEmail}
-                        required={true}
-                        onChange={(e) => setLogEmail(e.target.value)}
-                    />
-
-                    <input
-                        type="password"
-                        placeholder='Password'
-                        value={logPassword}
-                        required={true}
-                        onChange={(e) => setLogPassword(e.target.value)}
-                    />
-
-                    <input className="submit-button" type="submit" id="login" disabled={_isLoading}/>
-                    <p>{_error}</p>
-                </form>
+                <h5>Don't have an account? <Link to="/signup">Sign Up</Link></h5> 
             </div>
         </div>
     )
